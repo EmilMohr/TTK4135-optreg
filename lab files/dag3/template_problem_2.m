@@ -1,9 +1,9 @@
-% TTK4135 - Helicop111ter lab
+% TTK4135 - Helicopter lab
 % Hints/template for problem 2.
 % Updated spring 2018, Andreas L. Flåten
 
 %% Initialization and model definition
-init06; % Change this to the init file corresponding to your helicopter
+init05; % Change this to the init file corresponding to your helicopter
 
 % Discrete time system model. x = [lambda r p p_dot]'
 delta_t	= 0.25; % sampling time
@@ -53,7 +53,7 @@ Q1(1,1) =1 ;                            % Weight on state x1
 %Q1(2,2) = ;                            % Weight on state x2
 Q1(3,3) = 1;                            % Weight on state x3
 %Q1(4,4) = ;                            % Weight on state x4
-P1 = 0;                                % Weight on input
+P1 = 1.2;                                % Weight on input
 Q = gen_q(Q1, P1,N,M);                                 % Generate Q, hint: gen_q
 c = zeros((N*mx+M*mu),1);                                  % Generate c, this is the linear constant term in the QP
 
@@ -92,17 +92,25 @@ x1  = [pi*unit_padding; x1; zero_padding];
 x2  = [zero_padding; x2; zero_padding];
 x3  = [zero_padding; x3; zero_padding];
 x4  = [zero_padding; x4; zero_padding];
-uT = x3';
+uT = u';
 t = 0:delta_t:delta_t*(length(u)-1);
 M = [t; uT];
 %% Plotting
+M1 = [t; x1'];
+M2 = [t; x2'];
+M3 = [t; x3'];
+M4 = [t; x4'];
 
 save("optimalbanepitch", "M")
+save("x1", "M1")
+save("x2", "M2")
+save("x3", "M3")
+save("x4", "M4")
 % save("q_0,12_oppgaag2pdot", "x4")
 % save("q_0,12_ove3dag2lambda", "x1")
 % save("q_0,12_ppgave3dg2r", "x2")
 
-%save("u_vector1","M")
+save("u_vector1","M")
 figure(2)
 subplot(511)
 stairs(t,u),grid
@@ -119,20 +127,3 @@ ylabel('p')
 subplot(515)
 plot(t,x4,'m',t,x4','mo'),grid
 xlabel('tid (s)'),ylabel('pdot')
-figure(2)
-subplot(511)
-stairs(t,u),grid
-ylabel('u')
-subplot(512)
-plot(t,x1,'m',t,x1,'mo'),grid
-ylabel('lambda')
-subplot(513)
-plot(t,x2,'m',t,x2','mo'),grid
-ylabel('r')
-subplot(514)
-plot(t,x3,'m',t,x3,'mo'),grid
-ylabel('p')
-subplot(515)
-plot(t,x4,'m',t,x4','mo'),grid
-xlabel('tid (s)'),ylabel('pdot')
-plot show

@@ -1,4 +1,4 @@
-% TTK4135 - Helicop111ter lab
+% TTK4135 - Helicopter lab
 % Hints/template for problem 2.
 % Updated spring 2018, Andreas L. Flåten
 
@@ -102,7 +102,7 @@ save("optimalbanepitch", "M")
 % save("q_0,12_ove3dag2lambda", "x1")
 % save("q_0,12_ppgave3dg2r", "x2")
 
-%save("u_vector1","M")
+save("u_vector1","M")
 figure(2)
 subplot(511)
 stairs(t,u),grid
@@ -119,20 +119,3 @@ ylabel('p')
 subplot(515)
 plot(t,x4,'m',t,x4','mo'),grid
 xlabel('tid (s)'),ylabel('pdot')
-figure(2)
-subplot(511)
-stairs(t,u),grid
-ylabel('u')
-subplot(512)
-plot(t,x1,'m',t,x1,'mo'),grid
-ylabel('lambda')
-subplot(513)
-plot(t,x2,'m',t,x2','mo'),grid
-ylabel('r')
-subplot(514)
-plot(t,x3,'m',t,x3,'mo'),grid
-ylabel('p')
-subplot(515)
-plot(t,x4,'m',t,x4','mo'),grid
-xlabel('tid (s)'),ylabel('pdot')
-plot show
